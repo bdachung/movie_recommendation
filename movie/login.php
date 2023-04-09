@@ -5,6 +5,7 @@
         "user_id" => ""
     );
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        
         $username = $_POST["username"];
         $pwd = $_POST["pwd"];
         if(is_null($username) || is_null($pwd)){
@@ -13,6 +14,9 @@
         else{
             $query = "SELECT user_id FROM users WHERE user = '$username' AND pwd = '$pwd' ;" ;
             $result =  mysqli_query($link, $query);
+            if (! $result) {
+                die ("error :)");
+            }
             $user = mysqli_fetch_array($result);
             if(!$user){
                 $err = "No username";
@@ -39,6 +43,8 @@
 
     </head>
     <body>
+        <!-- <p> test connect <?php //echo($link); ?> </p> -->
+
         <div id="login-form" class="modal animate">
             <form class="modal-content" method="POST">
                 <div class="img-container">
