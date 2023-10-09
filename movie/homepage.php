@@ -4,13 +4,13 @@
     'Film_Noir', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci_Fi', 'Thriller', 'War', 'Western');
     include('connection.php');
     header('Access-Control-Allow-Origin: *');
-    if($_GET['name']){
+    if(!empty($_GET['name'])){
         $name = $_GET['name'];
         $query = "SELECT movie_id, movie_title FROM items WHERE UPPER(movie_title) LIKE UPPER('%$name%') ;";
         $result =  mysqli_query($link, $query);
         include('searchbyname.php');
     }
-    else if($_GET['filter']){
+    else if(!empty($_GET['filter'])){
         $filter = $_GET['filter'];
         $query = "SELECT items.movie_id, movie_title FROM items, item_type WHERE items.movie_id = item_type.movie_id AND item_type.movie_type = \"$filter\" ;";
         $result =  mysqli_query($link, $query);
@@ -77,6 +77,7 @@
             <h5 style="color:blue; font-size:30px; margin-top:10px;">Latest movies</h5>
             <?php
                 $row = mysqli_fetch_assoc($result);
+                $i = 1;
                 if($row){
                     $count = 0;
                     do{
@@ -88,6 +89,10 @@
                         if($count%5==0){
                             echo "</div>";
                         }   
+                        if($i >= 10){
+                            break;
+                        }
+                        $i += 1;
                     } while($row = mysqli_fetch_assoc($result));
                 }
                 ?>

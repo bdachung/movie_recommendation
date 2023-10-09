@@ -141,24 +141,24 @@ class CF(object):
         # return recommended_items 
         return [item[0] + 1 for item in recommended_items][:num]
     
-    def recommend2(self, u):
-        """
-        Determine all items should be recommended for user u.
-        The decision is made based on all i such that:
-        self.pred(u, i) > 0. Suppose we are considering items which 
-        have not been rated by u yet. 
-        """
-        ids = np.where(self.Y_data[:, 0] == u)[0]
-        items_rated_by_u = self.Y_data[ids, 1].tolist()              
-        recommended_items = []
+    # def recommend2(self, u):
+    #     """
+    #     Determine all items should be recommended for user u.
+    #     The decision is made based on all i such that:
+    #     self.pred(u, i) > 0. Suppose we are considering items which 
+    #     have not been rated by u yet. 
+    #     """
+    #     ids = np.where(self.Y_data[:, 0] == u)[0]
+    #     items_rated_by_u = self.Y_data[ids, 1].tolist()              
+    #     recommended_items = []
     
-        for i in range(self.n_items):
-            if i not in items_rated_by_u:
-                rating = self.__pred(u, i)
-                if rating > 0: 
-                    recommended_items.append(i)
+    #     for i in range(self.n_items):
+    #         if i not in items_rated_by_u:
+    #             rating = self.__pred(u, i)
+    #             if rating > 0: 
+    #                 recommended_items.append(i)
         
-        return recommended_items 
+    #     return recommended_items 
 
     def print_recommendation(self, num):
         """

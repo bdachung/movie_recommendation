@@ -1,0 +1,12 @@
+mysql-connector-python
+fastapi
+uvicorn
+pandas
+tensorflow
+tensorflow-gpu
+tensorflow-ranking
+matplotlib
+scikit-learn
+pydot
+lightgbm
+xgboost

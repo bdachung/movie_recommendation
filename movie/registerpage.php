@@ -79,6 +79,7 @@
                 xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         window.alert(xmlhttp.responseText);
+                        window.location.replace("./login.php");
                     }
                 };
                 xmlhttp.open("POST", "register.php");
